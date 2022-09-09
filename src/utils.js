@@ -18,8 +18,10 @@ import db from "./firebase";
 export const handleNew = async (address) => {
   const count = 0;
   const title = prompt("提案のタイトルを入力してください");
+  if(title === null) return;
   // const content = prompt("提案内容を入力してください");
-  const proposer = prompt("提案者（任意）");
+  let proposer = prompt("提案者（任意）");
+  if(proposer === null) return;
   const proposerAddress = address;
 
   const collectionRef = collection(db, "proposals");
@@ -37,8 +39,10 @@ export const handleNew = async (address) => {
 //提案編集
 export const handleEdit = async (id, address) => {
   const title = prompt("提案のタイトルを入力してください");
+  if(title === null) return;
   // const content = prompt("提案内容を入力してください");
   const proposer = prompt("提案者（任意）");
+  if(proposer === null) return;
   const docRef = doc(db, "proposals", id);
   const payload = {
     title: title,
