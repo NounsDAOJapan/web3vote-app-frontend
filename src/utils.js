@@ -84,6 +84,7 @@ export const handleVote = async (id, address) => {
   }
 };
 
+//一括削除機能（現状不要）
 // export const handleQueryDelete = async (id) => {
 //   const userInputName = prompt("");
 //   const collectionRef = collection(db, "proposals");
