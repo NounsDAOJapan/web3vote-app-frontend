@@ -10,7 +10,7 @@ import {
   serverTimestamp,
   getDoc,
   increment,
-} from "@firebase/firestore";
+} from "firebase/firestore";
 import "./App.css";
 import db from "./firebase";
 

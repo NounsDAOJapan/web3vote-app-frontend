@@ -3,7 +3,7 @@ import "./App.css";
 import { ethers } from "ethers";
 import contractData from "./artifacts/contracts/OnChainNFT.sol/OnChainNFT.json";
 import db from "./firebase";
-import { collection, onSnapshot, query, orderBy } from "@firebase/firestore";
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import { handleNew, handleDelete, handleEdit, handleVote } from "./utils";
 
 const App = () => {
