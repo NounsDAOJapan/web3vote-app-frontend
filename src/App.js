@@ -10,7 +10,7 @@ const App = () => {
   const [proposals, setProposals] = useState([]);
   const [accounts, setAccounts] = useState(["000"]);
   const [isConnected, setIsConnected] = useState(false);
-  const [isHolder, boolIsHolder] = useState(0);
+  const [numOfHold, setNumOfHold] = useState(0);
   // const [isHolder, boolIsHolder] = useState(false);
 
   useEffect(() => {
@@ -63,13 +63,13 @@ const App = () => {
       setIsConnected(true);
       setContract();
 
-      //balanceOfで該当コントラクトの保有枚数を確認
+      //balanceOfで該当コントラクトのトークン保有枚数を確認
       //切り離したい
       const rawBalance = await contract.balanceOf(accounts[0]);
       const balance = rawBalance.toNumber();
       console.log(`対象NFT保持数: ${balance}`);
       if (balance > 0) {
-        boolIsHolder(balance);
+        setNumOfHold(balance);
         // boolIsHolder(true);
       }
     }
@@ -80,12 +80,14 @@ const App = () => {
       <nav className="navbar navbar-dark bg-dark list-group-item d-flex justify-content-between">
         <h1>
           <span className="navbar-brand">Vote App(テスト版)</span>
-          {/* <span className="navbar-brand fs-6">投票用NFT"{NFTAddress}"</span> */}
         </h1>
-    {/* <p  className="c-white">aa</p> */}
         {isConnected ? (
-          <div className="btn btn-light overflow-hidden">{`${accounts[0].slice(0, 5)}...`}</div>
+          //接続後の表示
+          <div className="btn btn-light overflow-hidden">
+            {`${accounts[0].slice(0,5)}...`}
+          </div>
         ) : (
+          //接続前の表示
           <button className="btn btn-primary" onClick={connectAccount}>
             Connect
           </button>
@@ -107,12 +109,10 @@ const App = () => {
           </button>
         </div>
         <ul className="list-group mt-3">
-          <li 
-            className="list-group-item d-flex flex-column align-items-start"
-          >
+          <li className="list-group-item d-flex flex-column align-items-start">
             投票権を持つNFT
-            <a 
-              href={'https://etherscan.io/address/'+ NFTAddress}
+            <a
+              href={"https://etherscan.io/address/" + NFTAddress}
               target="_blank"
               rel="noreferrer"
             >
@@ -125,8 +125,9 @@ const App = () => {
               className="list-group-item d-flex flex-column align-items-start"
             >
               タイトル: {title.title} ({title.count} 票)
-              <br/>
-              提案者: {title.address.slice(0, 6)}...{title.address.slice(-6)} {title.proposer}
+              <br />
+              提案者: {title.address.slice(0, 6)}...{title.address.slice(-6)}{" "}
+              {title.proposer}
               <div className="ms-auto">
                 <button
                   className="btn btn-secondary m-1"
@@ -148,19 +149,14 @@ const App = () => {
                 >
                   delete
                 </button>
-                {/* <button
-                  className="btn btn-warning m-1"
-                  onClick={() => approveVote(title.id, accounts[0])}
-                >
-                  Approve
-                </button> */}
+
                 <button
                   className="btn btn-primary m-1"
                   onClick={() =>
                     isConnected
-                      ? isHolder > 0
-                      // ? isHolder
-                        ? handleVote(title.id, accounts[0], isHolder)
+                      ? numOfHold > 0
+                        ? // ? isHolder
+                          handleVote(title.id, accounts[0], numOfHold)
                         : alert("ホルダーのみ投票出来ます")
                       : alert("ウォレットを接続してください")
                   }

@@ -87,9 +87,8 @@ export const handleVote = async (id, address, count) => {
   } else if (votedAddrFlg > 0) {
     payload = { count: increment(1), [address]: increment(-1) };
     console.log(`この投票を含まない投票可能回数: ${votedAddrFlg}`);
-
   }
-  //フラグ
+  
   if(votedAddrFlg === 0) {
     alert("投票済みです");
   } else {
@@ -114,7 +113,7 @@ export const handleVote = async (id, address, count) => {
 //   }
 // };
 
-//一括削除機能（現状不要）
+//一括削除機能
 // export const handleQueryDelete = async (id) => {
 //   const userInputName = prompt("");
 //   const collectionRef = collection(db, "proposals");
