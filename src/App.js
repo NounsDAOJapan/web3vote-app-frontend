@@ -10,7 +10,7 @@ const App = () => {
   const [proposals, setProposals] = useState([]);
   const [accounts, setAccounts] = useState(["000"]);
   const [isConnected, setIsConnected] = useState(false);
-  const [numOfHold, setNumOfHold] = useState(0);
+  const [numOfHolds, setNumOfHolds] = useState(0);
   // const [isHolder, boolIsHolder] = useState(false);
 
   useEffect(() => {
@@ -23,14 +23,8 @@ const App = () => {
     return unsub;
   }, []);
 
-  // ウォレットを持たない人のための読み取り専用のコントラクト (Rinkeby testnet)
-  // const rpcURL = process.env.REACT_APP_RINKEBY_RPC_URL;
-  // const readOnlyProvider = new ethers.providers.JsonRpcProvider(rpcURL)
-  // const readOnlyContract = new ethers.Contract(OnChainNFTAddress, contractData.abi, readOnlyProvider);
-
-  // const NFTAddress = "0x7DEDa0aFE6DF3da6a85a87b371F8b464c30C6803"; //Rebels
   const NFTAddress = "0x898a7dBFdDf13962dF089FBC8F069Fa7CE92cDBb"; //NounsDAO JAPAN pfp
-  // const NFTAddress = contractData.contractAddress; //テスト用絆オンチェーンNFT
+  // const NFTAddress = contractData.contractAddress; //テスト用オンチェーンNFT
 
   let contract;
   function setContract() {
@@ -38,20 +32,6 @@ const App = () => {
     const signer = provider.getSigner();
     contract = new ethers.Contract(NFTAddress, contractData.abi, signer);
   }
-
-  // 切り離すとうまくいかない関数
-  // async function boolHolder() {
-  //   try {
-  //     setContract();
-  //     const rawBalance = await contract.balanceOf(accounts[0]);
-  //     const balance = rawBalance.toNumber();
-  //     if(balance !== 0) {
-  //       checkIsHolder(true);
-  //     }
-  //   } catch (err) {
-  //     console.log("error: ", err);
-  //   }
-  // }
 
   //ウォレット接続
   async function connectAccount() {
@@ -64,12 +44,12 @@ const App = () => {
       setContract();
 
       //balanceOfで該当コントラクトのトークン保有枚数を確認
-      //切り離したい
+      //切り分けたい
       const rawBalance = await contract.balanceOf(accounts[0]);
       const balance = rawBalance.toNumber();
       console.log(`対象NFT保持数: ${balance}`);
       if (balance > 0) {
-        setNumOfHold(balance);
+        setNumOfHolds(balance);
         // boolIsHolder(true);
       }
     }
@@ -154,9 +134,9 @@ const App = () => {
                   className="btn btn-primary m-1"
                   onClick={() =>
                     isConnected
-                      ? numOfHold > 0
+                      ? numOfHolds > 0
                         ? // ? isHolder
-                          handleVote(title.id, accounts[0], numOfHold)
+                          handleVote(title.id, accounts[0], numOfHolds)
                         : alert("ホルダーのみ投票出来ます")
                       : alert("ウォレットを接続してください")
                   }
