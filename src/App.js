@@ -129,7 +129,6 @@ const App = () => {
                 >
                   delete
                 </button>
-
                 <button
                   className="btn btn-primary m-1"
                   onClick={() =>
