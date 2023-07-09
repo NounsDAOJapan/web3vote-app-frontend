@@ -28,18 +28,19 @@ const App = () => {
 
   let contract;
   function setContract() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
+    const provider = window['ethereum'] || window.web3.currentProvider;
+    const ethersProvider = new ethers.providers.Web3Provider(provider);
+    const signer = ethersProvider.getSigner();
     contract = new ethers.Contract(NFTAddress, contractData.abi, signer);
   }
 
   //ウォレット接続
   async function connectAccount() {
     if (window.ethereum) {
-      const accounts = await window.ethereum.request({
+      const ethAccounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
-      setAccounts(accounts);
+      setAccounts(ethAccounts);
       setIsConnected(true);
       setContract();
 
@@ -81,7 +82,7 @@ const App = () => {
             className="btn btn-primary ms-3"
             onClick={() =>
               isConnected
-                ? handleNew(accounts[0])
+                ? handleNew(accounts[0], signer)
                 : alert("ウォレットを接続してください")
             }
           >
@@ -135,7 +136,7 @@ const App = () => {
                     isConnected
                       ? numOfHolds > 0
                         ? // ? isHolder
-                          handleVote(title.id, accounts[0], numOfHolds)
+                          handleVote(accounts[0], signer, title.id, numOfHolds)
                         : alert("ホルダーのみ投票出来ます")
                       : alert("ウォレットを接続してください")
                   }
