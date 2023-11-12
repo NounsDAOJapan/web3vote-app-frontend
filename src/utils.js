@@ -31,7 +31,7 @@ export const handleNew = async (address, signer) => {
     type: 'proposal'
   };
 
-  fetch("http://127.0.0.1:5001/vote-app-db-f4346/us-central1/getNonceToSign", {
+  fetch("http://127.0.0.1:5001/nouns-jp-vote/us-central1/getNonceToSign", {
     method: 'POST',
     body: JSON.stringify(signMsgData),
     headers: {'Content-Type': 'application/json'}
@@ -50,7 +50,7 @@ export const handleNew = async (address, signer) => {
     proposer: proposer
   };
 
-  fetch("http://127.0.0.1:5001/vote-app-db-f4346/us-central1/postProposal", {
+  fetch("http://127.0.0.1:5001/nouns-jp-vote/us-central1/postProposal", {
     method: 'POST',
     body: JSON.stringify(postPropData),
     headers: {'Content-Type': 'application/json'}
@@ -101,7 +101,7 @@ export const handleVote = async (address, signer, id, count) => {
     type: 'proposal'
   };
 
-  fetch("http://127.0.0.1:5001/vote-app-db-f4346/us-central1/getNonceToSign", {
+  fetch("http://127.0.0.1:5001/nouns-jp-vote/us-central1/getNonceToSign", {
     method: 'POST',
     body: JSON.stringify(signMsgData),
     headers: {'Content-Type': 'application/json'}
@@ -120,7 +120,7 @@ export const handleVote = async (address, signer, id, count) => {
     count: count
   };
 
-  fetch("http://127.0.0.1:5001/vote-app-db-f4346/us-central1/handleVote", {
+  fetch("http://127.0.0.1:5001/nouns-jp-vote/us-central1/handleVote", {
     method: 'POST',
     body: JSON.stringify(votePropData),
     headers: {'Content-Type': 'application/json'}
