@@ -17,16 +17,6 @@
 
 [デモページ](https://nouns-jp-vote-dev.web.app/)  
 
-### ~~投票用NFT~~
+### 投票用NFT
 
-~~ミントページを作っていないので、直コンしてください。~~  
-
-現在NounsDAO JAPAN pfpが投票権になっています（9/11）
-
-ネットワーク: Rinkeby testnet  
-
-Faucet: <https://rinkebyfaucet.com/>  
-
-コントラクト: [0xd04A00132154527B87DaaF2154e4565C17Cb7914](https://rinkeby.etherscan.io/address/0xd04A00132154527B87DaaF2154e4565C17Cb7914)  
-
-![直コン解説](https://github.com/Itodai/web3vote-app/blob/main/howtomint.png)  
+現在NounsDAO JAPAN pfpが投票権になっています
