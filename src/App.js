@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { ethers } from "ethers";
-import contractData from "./artifacts/contracts/OnChainNFT.sol/OnChainNFT.json";
+import abi from "./abi.json";
 import db from "./firebase";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import { handleNew, handleDelete, handleEdit, handleVote } from "./utils";
@@ -24,13 +24,12 @@ const App = () => {
   }, []);
 
   const NFTAddress = "0x898a7dBFdDf13962dF089FBC8F069Fa7CE92cDBb"; //NounsDAO JAPAN pfp
-  // const NFTAddress = contractData.contractAddress; //テスト用オンチェーンNFT
 
   let contract;
   function setContract() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    contract = new ethers.Contract(NFTAddress, contractData.abi, signer);
+    contract = new ethers.Contract(NFTAddress, abi, signer);
   }
 
   //ウォレット接続
