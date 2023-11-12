@@ -15,7 +15,7 @@
 ・提案を修正する機能（NFTの追加など）  
 ・投票結果順位付け  
 
-[デモページ](https://vote-app-db-f4346.web.app/)  
+[デモページ](https://nouns-jp-vote-dev.web.app/)  
 
 ### ~~投票用NFT~~
 

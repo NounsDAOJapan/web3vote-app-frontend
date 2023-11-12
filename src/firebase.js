@@ -1,19 +1,23 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"
+import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyD0qof03vjLn7OuohMOvfi_OX94YM9jtxs",
-  authDomain: "vote-app-db-f4346.firebaseapp.com",
-  projectId: "vote-app-db-f4346",
-  storageBucket: "vote-app-db-f4346.appspot.com",
-  messagingSenderId: "93673972581",
-  appId: "1:93673972581:web:99404d6e0dc956d7adb78c"
+  apiKey: "AIzaSyDKPNb7xpu22SGGTZqsTZZb4TazMiQW_IY",
+  authDomain: "nouns-jp-vote-dev.firebaseapp.com",
+  projectId: "nouns-jp-vote-dev",
+  storageBucket: "nouns-jp-vote-dev.appspot.com",
+  messagingSenderId: "528851718328",
+  appId: "1:528851718328:web:4e5f8bfa99e578866d644d",
+  measurementId: "G-07D6QR74Y0"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 export default getFirestore();
