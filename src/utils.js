@@ -19,7 +19,7 @@ export const handleNew = async (address, signer) => {
   const resdata = "";
   const count = 0;
   const title = prompt("提案のタイトルを入力してください(50文字以内)");
-  
+
   if(title === null) return;
   if(title.length > 50) return alert("50文字以内で入力してください");
   // const content = prompt("提案内容を入力してください");
@@ -39,7 +39,7 @@ export const handleNew = async (address, signer) => {
   .then(res => resdata = res.json())
   .then(json => console.log(json))
   .catch(err => console.error('error:' + err));
-  
+
   // メッセージを署名
   const signature = await signer.signMessage(resdata.message);
 
@@ -109,7 +109,7 @@ export const handleVote = async (address, signer, id, count) => {
   .then(res => resdata = res.json())
   .then(json => console.log(json))
   .catch(err => console.error('error:' + err));
-  
+
   // メッセージを署名
   const signature = await signer.signMessage(resdata.message);
 
